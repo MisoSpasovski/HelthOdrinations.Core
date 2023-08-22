@@ -1,11 +1,27 @@
 ﻿<Properties StartupConfiguration="{C97A1CB1-23E3-4A0C-AC30-220BE0BFA432}|https">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.HelthOrdinations.Core PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/Controllers/LocationsController.cs">
+    <Files>
+      <File FileName="HelthOrdinations.Core/DB/DbContext.cs" Line="23" Column="6" />
+      <File FileName="HelthOrdinations.Core/Models/Locations.cs" Line="15" Column="2" />
+      <File FileName="HelthOrdinations.Core/appsettings.json" Line="6" Column="6" />
+      <File FileName="HelthOrdinations.Core/Program.cs" Line="12" Column="1" />
+      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="13" Column="54" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="HelthOrdinations.Core" expanded="True">
-            <Node name="HelthOrdinations.Core" expanded="True" selected="True" />
+            <Node name="HelthOrdinations.Core">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Helpers" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -14,10 +30,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.HelthOrdinations.Core PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
