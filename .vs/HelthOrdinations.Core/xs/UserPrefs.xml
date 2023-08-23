@@ -1,18 +1,24 @@
 ﻿<Properties StartupConfiguration="{C97A1CB1-23E3-4A0C-AC30-220BE0BFA432}|https">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/Controllers/LocationsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/DB/HODbContext.cs">
     <Files>
       <File FileName="HelthOrdinations.Core/appsettings.json" />
       <File FileName="HelthOrdinations.Core/Program.cs" />
-      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="13" Column="54" />
+      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="12" Column="1" />
+      <File FileName="HelthOrdinations.Core/DB/HODbContext.cs" Line="7" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="HelthOrdinations.Core" expanded="True">
+          <Node name="HelthOrdinations.Core">
             <Node name="HelthOrdinations.Core" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="DB" expanded="True">
+                <Node name="HODbContext.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>

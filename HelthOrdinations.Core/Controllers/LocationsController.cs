@@ -16,9 +16,9 @@ public class LocationsController : ControllerBase
     }
 
     [HttpGet("GetLocations")]
-    public ActionResult<IEnumerable<LocationsInfo>> GetLocations()
+    public ActionResult<IEnumerable<LocationsInfo>> GetLocations(int typeId)
     {
-        var locations = _dbContext.Locations.ToList();
+        var locations = _dbContext.Locations.Where(x=>x.OrdinationsTypeId == typeId).ToList();
 
         return Ok(locations);
 ;    }

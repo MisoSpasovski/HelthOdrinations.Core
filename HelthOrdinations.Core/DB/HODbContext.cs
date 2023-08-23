@@ -12,6 +12,8 @@ namespace HelthOrdinations.Core.DB
         }
 
         public virtual DbSet<LocationsInfo> Locations { get; set; }
+        public virtual DbSet<OrdinationsTypeInfo> OrdinationsType { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
