@@ -1,5 +1,6 @@
 ﻿using HelthOrdinations.Core.DB;
 using HelthOrdinations.Core.Helpers.Auth;
+using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
 using HelthOrdinations.Core.Models.Enums;
 using HelthOrdinations.Core.Responses;
@@ -41,6 +42,22 @@ public class UsersController : ControllerBase
             response.IsSuccess = false;
             response.UserToken = "";
             return response;
+        }
+    }
+
+    [HttpPost("ForgotPassword")]
+    public ActionResult<bool> ForgotPassword(ResetPassword request)
+    {
+        try
+        {
+            string body = "Click the link below to reset your password:<br /><a href='deeplink://resetpassword'>Reset Password</a>";
+
+            SendEmailHelper.SendEmail(request.Email, body, "Reset password");
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using HelthOrdinations.Core.DB;
+using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ public class LocationsController : ControllerBase
 
     [HttpGet("GetLocations")]
     public ActionResult<IEnumerable<LocationsInfo>> GetLocations(int typeId)
-    {
+    {        
         var locations = _dbContext.Locations.Where(x=>x.OrdinationsTypeId == typeId).ToList();
 
         return Ok(locations);

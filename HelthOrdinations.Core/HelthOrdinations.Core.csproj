@@ -26,6 +26,7 @@
     <None Remove="Models\Enums\" />
     <None Remove="Responses\" />
     <None Remove="Requets\" />
+    <None Remove="Helpers\EmailSender\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -35,5 +36,6 @@
     <Folder Include="Models\Enums\" />
     <Folder Include="Responses\" />
     <Folder Include="Requets\" />
+    <Folder Include="Helpers\EmailSender\" />
   </ItemGroup>
 </Project>
