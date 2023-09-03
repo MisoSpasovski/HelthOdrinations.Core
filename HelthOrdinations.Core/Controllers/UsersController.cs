@@ -50,7 +50,7 @@ public class UsersController : ControllerBase
     {
         try
         {
-            string body = "Click the link below to reset your password:<br /><a href='deeplink://resetpassword'>Reset Password</a>";
+            string body = "Click the link below to reset your password:<br /><a href='deeplink://resetpassword?email="+request.Email+"'>Reset Password</a>";
 
             SendEmailHelper.SendEmail(request.Email, body, "Reset password");
             return true;
