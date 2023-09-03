@@ -1,33 +1,56 @@
 ﻿<Properties StartupConfiguration="{C97A1CB1-23E3-4A0C-AC30-220BE0BFA432}|https">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.HelthOrdinations.Core PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/DB/HODbContext.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/misospasovski/Documents/Projects/HelthOrdinations.Core/HelthOrdinations.Core/Controllers/UsersController.cs" relfile="HelthOrdinations.Core/Controllers/UsersController.cs" line="49" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/Controllers/LocationsController.cs">
     <Files>
       <File FileName="HelthOrdinations.Core/appsettings.json" />
       <File FileName="HelthOrdinations.Core/Program.cs" />
-      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="12" Column="1" />
-      <File FileName="HelthOrdinations.Core/DB/HODbContext.cs" Line="7" Column="37" />
+      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="20" Column="1" />
+      <File FileName="HelthOrdinations.Core/DB/HODbContext.cs" />
+      <File FileName="HelthOrdinations.Core/Models/OrdinationsTypeInfo.cs" />
+      <File FileName="HelthOrdinations.Core/Models/LocationsInfo.cs" />
+      <File FileName="HelthOrdinations.Core/Helpers/Auth/TokenData.cs" />
+      <File FileName="HelthOrdinations.Core/Helpers/Auth/JWTTokenConfig.cs" />
+      <File FileName="HelthOrdinations.Core/Helpers/Auth/JWTTokenHelper.cs" />
+      <File FileName="HelthOrdinations.Core/Helpers/Auth/CustomClaimTypes.cs" />
+      <File FileName="HelthOrdinations.Core/Helpers/Auth/UserTokenData.cs" />
+      <File FileName="HelthOrdinations.Core/Controllers/UsersController.cs" />
+      <File FileName="HelthOrdinations.Core/Models/Enums/UsersStatusEnum.cs" />
+      <File FileName="HelthOrdinations.Core/Responses/LoginResponse.cs" />
+      <File FileName="HelthOrdinations.Core/Requets/LoginRequest.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="HelthOrdinations.Core">
+          <Node name="HelthOrdinations.Core" expanded="True">
             <Node name="HelthOrdinations.Core" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="DB" expanded="True">
-                <Node name="HODbContext.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="LocationsController.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="DB" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="Auth" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True">
+                <Node name="Enums" expanded="True" />
+              </Node>
               <Node name="Properties" expanded="True" />
+              <Node name="Requets" expanded="True" />
+              <Node name="Responses" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.HelthOrdinations.Core PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

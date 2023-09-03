@@ -21,5 +21,14 @@ public class LocationsController : ControllerBase
         var locations = _dbContext.Locations.Where(x=>x.OrdinationsTypeId == typeId).ToList();
 
         return Ok(locations);
-;    }
+    }
+
+    [HttpGet("GetLocationDetails")]
+    public ActionResult<IEnumerable<LocationsInfo>> GetLocationDetails(int locationsid)
+    {
+        var locationDetails = _dbContext.LocationDetails.Where(x => x.LocationsId == locationsid).FirstOrDefault();
+
+        return Ok(locationDetails);
+        ;
+    }
 }

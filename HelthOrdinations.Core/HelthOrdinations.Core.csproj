@@ -13,16 +13,27 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="DB\" />
     <None Remove="Helpers\" />
+    <None Remove="Helpers\Auth\" />
+    <None Remove="Models\Enums\" />
+    <None Remove="Responses\" />
+    <None Remove="Requets\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="DB\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Helpers\Auth\" />
+    <Folder Include="Models\Enums\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Requets\" />
   </ItemGroup>
 </Project>

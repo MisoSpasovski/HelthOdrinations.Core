@@ -13,7 +13,10 @@ namespace HelthOrdinations.Core.DB
 
         public virtual DbSet<LocationsInfo> Locations { get; set; }
         public virtual DbSet<OrdinationsTypeInfo> OrdinationsType { get; set; }
-        
+        public virtual DbSet<LocationDetailsInfo> LocationDetails { get; set; }
+        public virtual DbSet<UserInfo> Users { get; set; }
+        public virtual DbSet<UserStatusInfo> UserStatus { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
