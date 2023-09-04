@@ -1,4 +1,5 @@
-﻿using HelthOrdinations.Core.DB;
+﻿using Azure.Core;
+using HelthOrdinations.Core.DB;
 using HelthOrdinations.Core.Helpers.Auth;
 using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
@@ -46,7 +47,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("ForgotPassword")]
-    public ActionResult<bool> ForgotPassword(ResetPassword request)
+    public ActionResult<bool> ForgotPassword(ForgotPassword request)
     {
         try
         {
@@ -78,6 +79,29 @@ public class UsersController : ControllerBase
             };
 
             _dbContext.Users.Add(newUser);
+
+            _dbContext.SaveChanges();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    [HttpPost("ResetPassword")]
+    public ActionResult<bool> ResetPassword(ResetPassword request)
+    {
+        try
+        {
+            var passwordHasher = new PasswordHasher();
+            request.NewPassword= passwordHasher.HashPassword(request.NewPassword);
+
+            var user = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == request.Email.ToLower());
+            user.Password = request.NewPassword;
+
+            _dbContext.Users.Update(user);
 
             _dbContext.SaveChanges();
 
