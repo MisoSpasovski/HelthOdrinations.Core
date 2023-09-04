@@ -75,7 +75,8 @@ public class UsersController : ControllerBase
                 Email = user.Email,
                 UserName = user.UserName,
                 Password = user.Password,
-                UserStatusId = (int)UsersStatusEnum.Inactive
+                UserStatusId = (int)UsersStatusEnum.Inactive,
+                RoleTypeId = 1
             };
 
             _dbContext.Users.Add(newUser);
