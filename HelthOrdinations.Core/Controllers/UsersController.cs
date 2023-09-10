@@ -30,19 +30,30 @@ public class UsersController : ControllerBase
         var loginInfo = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == email.ToLower());
         var hasher = new PasswordHasher();
 
-        if (loginInfo != null && hasher.VerifyHashedPassword(loginInfo.Password, password) != PasswordVerificationResult.Failed)
+        if (loginInfo != null && loginInfo.UserStatusId == (int)UsersStatusEnum.Inactive)
         {
-            response.Message = "Valid user.";
-            response.IsSuccess = true;
-            response.UserToken = _jwtTokenHelper.GenerateToken(loginInfo);
+            response.Message = "User is not activated !";
+            response.IsSuccess = false;
+            response.UserToken = "";
             return response;
         }
         else
         {
-            response.Message = "Invalid user.";
-            response.IsSuccess = false;
-            response.UserToken = "";
-            return response;
+
+            if (loginInfo != null && hasher.VerifyHashedPassword(loginInfo.Password, password) != PasswordVerificationResult.Failed)
+            {
+                response.Message = "Valid user.";
+                response.IsSuccess = true;
+                response.UserToken = _jwtTokenHelper.GenerateToken(loginInfo);
+                return response;
+            }
+            else
+            {
+                response.Message = "The credentials are not valid !";
+                response.IsSuccess = false;
+                response.UserToken = "";
+                return response;
+            }
         }
     }
 
@@ -63,9 +74,18 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("SaveUser")]
-    public ActionResult<bool> SaveUser(UserInfo user)
+    public ActionResult<RegisterResponse> SaveUser(UserInfo user)
     {
-        try
+        var response = new RegisterResponse();
+
+        if (_dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == user.Email.ToLower()) != null)
+        {
+            response.IsSuccess = false;
+            response.Message = "User already exists with that email !";
+            return response;
+        }
+
+        else
         {
             var passwordHasher = new PasswordHasher();
             user.Password = passwordHasher.HashPassword(user.Password);
@@ -83,11 +103,14 @@ public class UsersController : ControllerBase
 
             _dbContext.SaveChanges();
 
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
+            string body = "Click the link below to verify your user:<br /><a href='deeplink://activateuser?email=" + user.Email + "'>Activate user</a>";
+
+            SendEmailHelper.SendEmail(user.Email, body, "Reset password");
+
+            response.IsSuccess = true;
+            response.Message = "User successfully registered, please check email to verify !";
+            return response;
+
         }
     }
 
@@ -101,6 +124,26 @@ public class UsersController : ControllerBase
 
             var user = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == request.Email.ToLower());
             user.Password = request.NewPassword;
+
+            _dbContext.Users.Update(user);
+
+            _dbContext.SaveChanges();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    [HttpGet("ActivateUser")]
+    public ActionResult<bool> ActivateUser(string email)
+    {
+        try
+        {
+            var user = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == email.ToLower());
+            user.UserStatusId = (int)UsersStatusEnum.Active;
 
             _dbContext.Users.Update(user);
 
