@@ -56,10 +56,10 @@ namespace HelthOrdinations.Core.Helpers.Auth
                     claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserId, userInfoModel.Id.ToString()));
                 }
 
-                //if (userInfoModel.FirstName != null)
-                //{
-                //    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserFirstName, userInfoModel.FirstName));
-                //}
+                if (userInfoModel.UserName != null)
+                {
+                    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserName, userInfoModel.UserName));
+                }
 
                 //if (userInfoModel.LastName != null)
                 //{

@@ -5,7 +5,7 @@ namespace HelthOrdinations.Core.Helpers.Auth
 	{
         public const string UserId = "UserId";
 
-        public const string UserFirstName = "UserFirstName";
+        public const string UserName = "UserName";
 
         public const string UserLastName = "UserLastName";
 
