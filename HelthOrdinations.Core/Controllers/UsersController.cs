@@ -4,6 +4,7 @@ using HelthOrdinations.Core.Helpers.Auth;
 using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
 using HelthOrdinations.Core.Models.Enums;
+using HelthOrdinations.Core.Requets;
 using HelthOrdinations.Core.Responses;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,11 +24,11 @@ public class UsersController : ControllerBase
         _jwtTokenHelper = jwtTokenHelper;
     }
 
-    [HttpGet("LoginUser")]
-    public ActionResult<LoginResponse> LoginUser(string email, string password)
+    [HttpPost("LoginUser")]
+    public ActionResult<LoginResponse> LoginUser(LoginRequest request)
     {
         var response = new LoginResponse();
-        var loginInfo = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == email.ToLower());
+        var loginInfo = _dbContext.Users.FirstOrDefault(x => x.Email.ToLower() == request.Email.ToLower());
         var hasher = new PasswordHasher();
 
         if (loginInfo != null && loginInfo.UserStatusId == (int)UsersStatusEnum.Inactive)
@@ -40,7 +41,7 @@ public class UsersController : ControllerBase
         else
         {
 
-            if (loginInfo != null && hasher.VerifyHashedPassword(loginInfo.Password, password) != PasswordVerificationResult.Failed)
+            if (loginInfo != null && hasher.VerifyHashedPassword(loginInfo.Password, request.Password) != PasswordVerificationResult.Failed)
             {
                 response.Message = "Valid user.";
                 response.IsSuccess = true;
