@@ -1,12 +1,13 @@
 ﻿using System;
 namespace HelthOrdinations.Core.Models
 {
-	public class RoleTypeInfo
-    {
+	public class ClientsInfo
+	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-
-		public RoleTypeInfo()
+		public string Email { get; set; }
+		public int UserStatusId { get; set; }
+		public ClientsInfo()
 		{
 		}
 	}
