@@ -42,4 +42,32 @@ public class ReservationsController : ControllerBase
         return response;
 
     }
+
+    [HttpGet("GetReservationsForClient")]
+    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(int clientId)
+    {
+        var reservationsForClient = (from r in _dbContext.Reservations
+                                    join u in _dbContext.Users on r.UserId equals u.Id
+                                    join c in _dbContext.Clients on r.ClientId equals c.Id
+                                    where r.ClientId == clientId
+                                    select new ReservationsForClientResponse
+                                    {
+                                        ReservationId = r.Id,
+                                        UserId = u.Id,
+                                        UserUsername = u.UserName,
+                                        UserEmail = u.Email,
+                                        ClientId = c.Id,
+                                        ClientUsername = c.Name,
+                                        ClientEmail = c.Email,
+                                        ReservationFrom = r.ReservationFrom,
+                                        ReservationTo = r.ReservationTo,
+                                        Description = r.Description
+
+                                   
+                           }).ToList();
+
+
+
+        return Ok(reservationsForClient);
+    }
 }
