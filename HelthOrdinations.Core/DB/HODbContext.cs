@@ -18,6 +18,7 @@ namespace HelthOrdinations.Core.DB
         public virtual DbSet<UserStatusInfo> UserStatus { get; set; }
         public virtual DbSet<ClientsInfo> Clients { get; set; }
         public virtual DbSet<ReservationsInfo> Reservations { get; set; }
+        public virtual DbSet<WorkingHoursInfo> WorkingHours { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

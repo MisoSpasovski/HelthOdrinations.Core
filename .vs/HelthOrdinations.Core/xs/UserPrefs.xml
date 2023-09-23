@@ -1,49 +1,39 @@
-﻿<Properties StartupConfiguration="{C97A1CB1-23E3-4A0C-AC30-220BE0BFA432}|https">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C97A1CB1-23E3-4A0C-AC30-220BE0BFA432}|https">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.HelthOrdinations.Core PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/misospasovski/Documents/Projects/HelthOrdinations.Core/HelthOrdinations.Core/Controllers/UsersController.cs" relfile="HelthOrdinations.Core/Controllers/UsersController.cs" line="49" column="1" />
-    </BreakpointStore>
+    <Breakpoint file="/Users/misospasovski/Documents/Projects/HelthOrdinations.Core/HelthOrdinations.Core/Controllers/UsersController.cs" relfile="HelthOrdinations.Core/Controllers/UsersController.cs" line="119" column="1" />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/Controllers/LocationsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HelthOrdinations.Core/Requets/ReservationRequest.cs">
     <Files>
-      <File FileName="HelthOrdinations.Core/appsettings.json" />
-      <File FileName="HelthOrdinations.Core/Program.cs" />
-      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="20" Column="1" />
-      <File FileName="HelthOrdinations.Core/DB/HODbContext.cs" />
-      <File FileName="HelthOrdinations.Core/Models/OrdinationsTypeInfo.cs" />
-      <File FileName="HelthOrdinations.Core/Models/LocationsInfo.cs" />
-      <File FileName="HelthOrdinations.Core/Helpers/Auth/TokenData.cs" />
-      <File FileName="HelthOrdinations.Core/Helpers/Auth/JWTTokenConfig.cs" />
-      <File FileName="HelthOrdinations.Core/Helpers/Auth/JWTTokenHelper.cs" />
-      <File FileName="HelthOrdinations.Core/Helpers/Auth/CustomClaimTypes.cs" />
-      <File FileName="HelthOrdinations.Core/Helpers/Auth/UserTokenData.cs" />
-      <File FileName="HelthOrdinations.Core/Controllers/UsersController.cs" />
-      <File FileName="HelthOrdinations.Core/Models/Enums/UsersStatusEnum.cs" />
-      <File FileName="HelthOrdinations.Core/Responses/LoginResponse.cs" />
-      <File FileName="HelthOrdinations.Core/Requets/LoginRequest.cs" />
+      <File FileName="HelthOrdinations.Core/Controllers/ReservationsController.cs" Line="24" Column="75" />
+      <File FileName="HelthOrdinations.Core/Responses/ReservationsForClientResponse.cs" Line="16" Column="1" />
+      <File FileName="HelthOrdinations.Core/Models/ReservationsInfo.cs" Line="12" Column="1" />
+      <File FileName="HelthOrdinations.Core/Models/WorkingHoursInfo.cs" Line="11" Column="46" />
+      <File FileName="HelthOrdinations.Core/DB/HODbContext.cs" Line="19" Column="64" />
+      <File FileName="HelthOrdinations.Core/Controllers/LocationsController.cs" Line="32" Column="36" />
+      <File FileName="HelthOrdinations.Core/Models/LocationsInfo.cs" Line="4" Column="15" />
+      <File FileName="HelthOrdinations.Core/Requets/ReservationRequest.cs" Line="10" Column="48" />
+      <File FileName="HelthOrdinations.Core/Responses/WorkingHoursResponse.cs" Line="11" Column="32" />
+      <File FileName="HelthOrdinations.Core/Controllers/UsersController.cs" Line="31" Column="108" />
+      <File FileName="HelthOrdinations.Core/Responses/ReservationResponse.cs" Line="13" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="HelthOrdinations.Core" expanded="True">
-            <Node name="HelthOrdinations.Core" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="LocationsController.cs" selected="True" />
-              </Node>
-              <Node name="DB" expanded="True" />
+          <Node name="HelthOrdinations.Core">
+            <Node name="HelthOrdinations.Core">
               <Node name="Helpers" expanded="True">
                 <Node name="Auth" expanded="True" />
+                <Node name="EmailSender" expanded="True" />
               </Node>
-              <Node name="Models" expanded="True">
+              <Node name="Models">
                 <Node name="Enums" expanded="True" />
               </Node>
               <Node name="Properties" expanded="True" />
-              <Node name="Requets" expanded="True" />
-              <Node name="Responses" expanded="True" />
+              <Node name="Requets" expanded="True">
+                <Node name="ReservationRequest.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -53,4 +43,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>

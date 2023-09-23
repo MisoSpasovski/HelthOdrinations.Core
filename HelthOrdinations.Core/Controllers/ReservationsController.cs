@@ -1,4 +1,5 @@
-﻿using HelthOrdinations.Core.DB;
+﻿using Azure.Core;
+using HelthOrdinations.Core.DB;
 using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
 using HelthOrdinations.Core.Models.Enums;
@@ -44,15 +45,17 @@ public class ReservationsController : ControllerBase
     }
 
     [HttpGet("GetReservationsForClient")]
-    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(int clientId)
+    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(int clientId, DateOnly date)
     {
+
         var reservationsForClient = (from r in _dbContext.Reservations
                                     join u in _dbContext.Users on r.UserId equals u.Id
                                     join c in _dbContext.Clients on r.ClientId equals c.Id
-                                    where r.ClientId == clientId
+                                    join wh in _dbContext.WorkingHours on c.Id equals wh.ClientId
+                                    where r.ClientId == clientId && r.ReservationFrom.DayOfYear == date.DayOfYear
                                     select new ReservationsForClientResponse
                                     {
-                                        ReservationId = r.Id,
+                                        Id = r.Id,
                                         UserId = u.Id,
                                         UserUsername = u.UserName,
                                         UserEmail = u.Email,
@@ -70,4 +73,28 @@ public class ReservationsController : ControllerBase
 
         return Ok(reservationsForClient);
     }
+
+    [HttpGet("GetWorkingHours")]
+    public ActionResult<WorkingHoursResponse> GetWorkingHours(int clientId)
+    {
+        var workingHours = _dbContext.WorkingHours.FirstOrDefault(x => x.ClientId == clientId);
+        if (workingHours != null) {
+            var response = new WorkingHoursResponse
+            {
+                Id = workingHours.Id,
+                ClientId = workingHours.ClientId,
+                WorkingHoursFrom = workingHours.WorkingHoursFrom,
+                WorkingHoursTo = workingHours.WorkingHoursTo,
+                PauseFrom = workingHours.PauseFrom,
+                PauseTo = workingHours.PauseTo
+            };
+            return Ok(response);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+       
 }

@@ -3,7 +3,7 @@ namespace HelthOrdinations.Core.Responses
 {
 	public class ReservationsForClientResponse
 	{
-		public int ReservationId {get;set;}
+		public int Id {get;set;}
 		public int UserId { get; set; }
 		public string UserUsername {get;set; }
         public string UserEmail { get; set; }

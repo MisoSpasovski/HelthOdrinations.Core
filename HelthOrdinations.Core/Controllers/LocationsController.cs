@@ -30,6 +30,5 @@ public class LocationsController : ControllerBase
         var locationDetails = _dbContext.LocationDetails.Where(x => x.LocationsId == locationsid).FirstOrDefault();
 
         return Ok(locationDetails);
-        ;
     }
 }
