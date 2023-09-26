@@ -1,15 +1,15 @@
-﻿using Azure.Core;
-using HelthOrdinations.Core.DB;
+﻿using HelthOrdinations.Core.DB;
 using HelthOrdinations.Core.Helpers;
-using HelthOrdinations.Core.Helpers.EmailSender;
+using HelthOrdinations.Core.Helpers.Auth;
 using HelthOrdinations.Core.Models;
-using HelthOrdinations.Core.Models.Enums;
 using HelthOrdinations.Core.Requets;
 using HelthOrdinations.Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locations.Core.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ReservationsController : ControllerBase
@@ -28,7 +28,7 @@ public class ReservationsController : ControllerBase
 
         var newReservation = new ReservationsInfo
         {
-            UserId = request.UserId,
+            UserId = User.GetUserId(),
             ClientId = request.ClientId,
             ReservationFrom = request.ReservationFrom,
             ReservationTo = request.ReservationTo,

@@ -126,11 +126,11 @@ namespace HelthOrdinations.Core.Helpers.Auth
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
 
-            //var idClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserId);
-            //userInfoModel.Id = idClaim == null ? Guid.Empty : Guid.Parse(idClaim.Value);
+            var idClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserId);
+            userInfoModel.Id = idClaim == null ? 0 : int.Parse(idClaim.Value);
 
-            //var fullNameClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserFirstName);
-            //userInfoModel.FirstName = fullNameClaim == null ? string.Empty : fullNameClaim.Value;
+            var userEmail = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserEmail);
+            userInfoModel.Email = userEmail == null ? string.Empty : userEmail.Value;
 
             //var emailClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserLastName);
             //userInfoModel.LastName = emailClaim == null ? string.Empty : emailClaim.Value;
