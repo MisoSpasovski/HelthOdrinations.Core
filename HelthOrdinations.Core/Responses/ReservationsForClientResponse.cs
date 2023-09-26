@@ -13,6 +13,8 @@ namespace HelthOrdinations.Core.Responses
 		public DateTime ReservationFrom { get; set; }
 		public DateTime ReservationTo { get; set; }
 		public string Description { get; set; }
+        public int ReservationFromInt { get; set; }
+        public int ReservationToInt { get; set; }
 
         public ReservationsForClientResponse()
 		{

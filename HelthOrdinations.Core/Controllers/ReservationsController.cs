@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using HelthOrdinations.Core.DB;
+using HelthOrdinations.Core.Helpers;
 using HelthOrdinations.Core.Helpers.EmailSender;
 using HelthOrdinations.Core.Models;
 using HelthOrdinations.Core.Models.Enums;
@@ -64,10 +65,12 @@ public class ReservationsController : ControllerBase
                                         ClientEmail = c.Email,
                                         ReservationFrom = r.ReservationFrom,
                                         ReservationTo = r.ReservationTo,
-                                        Description = r.Description
+                                        Description = r.Description,
+                                        ReservationFromInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(r.ReservationFrom),
+                                        ReservationToInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(r.ReservationTo)
 
-                                   
-                           }).ToList();
+
+                                    }).ToList();
 
 
 
@@ -86,7 +89,11 @@ public class ReservationsController : ControllerBase
                 WorkingHoursFrom = workingHours.WorkingHoursFrom,
                 WorkingHoursTo = workingHours.WorkingHoursTo,
                 PauseFrom = workingHours.PauseFrom,
-                PauseTo = workingHours.PauseTo
+                PauseTo = workingHours.PauseTo,
+                WorkingHoursFromInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(workingHours.WorkingHoursFrom),
+                WorkingHoursToInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(workingHours.WorkingHoursTo),
+                PauseFromInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(workingHours.PauseFrom),
+                PauseToInt = ConverFromDatetimeToInt.ConvertDatetimeToInt(workingHours.PauseTo)
             };
             return Ok(response);
         }
@@ -96,5 +103,6 @@ public class ReservationsController : ControllerBase
         }
     }
 
+   
        
 }
