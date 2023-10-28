@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Locations.Core.Controllers;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ReservationsController : ControllerBase

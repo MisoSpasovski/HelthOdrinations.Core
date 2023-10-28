@@ -46,6 +46,22 @@ namespace HelthOrdinations.Core.Helpers.Auth
             return tokenHandler.WriteToken(token);
         }
 
+        public string GenerateClientToken(ClientsInfo clientInfoModel)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = GetClientClaimsIdentity(clientInfoModel),
+                Expires = DateTime.UtcNow.AddHours(_tokenExpiration),
+                Issuer = _tokenIssuer,
+                Audience = _tokenAudience,
+                SigningCredentials = new SigningCredentials(_tokenSecurityKey, SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
         private ClaimsIdentity GetClaimsIdentity(UserInfo userInfoModel)
         {
             var claimsIdentity = new ClaimsIdentity();
@@ -61,20 +77,31 @@ namespace HelthOrdinations.Core.Helpers.Auth
                     claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserName, userInfoModel.UserName));
                 }
 
-                //if (userInfoModel.LastName != null)
-                //{
-                //    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserLastName, userInfoModel.LastName));
-                //}
-
-                //if (userInfoModel.RoleId != null)
-                //{
-                //    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserRole, userInfoModel.RoleId.ToString()));
-                //    claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, userInfoModel.RoleId.ToString()));
-                //}
 
                 if (userInfoModel.Email != null)
                 {
                     claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserEmail, userInfoModel.Email));
+                }
+
+            }
+
+            return claimsIdentity;
+        }
+
+        private ClaimsIdentity GetClientClaimsIdentity(ClientsInfo clientInfoModel)
+        {
+            var claimsIdentity = new ClaimsIdentity();
+            if (clientInfoModel != null)
+            {
+                if (clientInfoModel.Email != null)
+                {
+                    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserId, clientInfoModel.Id.ToString()));
+                }
+
+
+                if (clientInfoModel.Email != null)
+                {
+                    claimsIdentity.AddClaim(new Claim(CustomClaimTypes.UserEmail, clientInfoModel.Email));
                 }
 
             }
@@ -139,6 +166,22 @@ namespace HelthOrdinations.Core.Helpers.Auth
             //userInfoModel.RoleId = int.Parse(userRoleClaim == null ? string.Empty : userRoleClaim.Value);
 
             return userInfoModel;
+        }
+
+        public ClientsInfo GetAuthClientInfo(string token)
+        {
+            ClientsInfo clientInfoModel = new ClientsInfo();
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
+
+            var idClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserId);
+            clientInfoModel.Id = idClaim == null ? 0 : int.Parse(idClaim.Value);
+
+            var userEmail = securityToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimTypes.UserEmail);
+            clientInfoModel.Email = userEmail == null ? string.Empty : userEmail.Value;
+
+            return clientInfoModel;
         }
     }
 }

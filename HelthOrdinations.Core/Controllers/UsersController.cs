@@ -156,4 +156,38 @@ public class UsersController : ControllerBase
             return false;
         }
     }
+
+    [HttpPost("LoginClient")]
+    public ActionResult<LoginResponse> LoginClient(LoginRequest request)
+    {
+        var response = new LoginResponse();
+        var clientInfo = _dbContext.Clients.FirstOrDefault(x => x.Email.ToLower() == request.Email.ToLower());
+        var hasher = new PasswordHasher();
+
+        if (clientInfo != null && clientInfo.UserStatusId == (int)UsersStatusEnum.Inactive)
+        {
+            response.Message = "User is not activated !";
+            response.IsSuccess = false;
+            response.UserToken = "";
+            return response;
+        }
+        else
+        {
+
+            if (clientInfo != null && hasher.VerifyHashedPassword(clientInfo.Password, request.Password) != PasswordVerificationResult.Failed)
+            {
+                response.Message = "Valid user.";
+                response.IsSuccess = true;
+                response.UserToken = _jwtTokenHelper.GenerateClientToken(clientInfo);
+                return response;
+            }
+            else
+            {
+                response.Message = "The credentials are not valid !";
+                response.IsSuccess = false;
+                response.UserToken = "";
+                return response;
+            }
+        }
+    }
 }
