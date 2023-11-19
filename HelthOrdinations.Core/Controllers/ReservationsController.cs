@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Locations.Core.Controllers;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ReservationsController : ControllerBase
@@ -46,14 +46,14 @@ public class ReservationsController : ControllerBase
     }
 
     [HttpGet("GetReservationsForClient")]
-    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(int clientId, DateOnly date)
+    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(DateOnly date)
     {
 
         var reservationsForClient = (from r in _dbContext.Reservations
                                     join u in _dbContext.Users on r.UserId equals u.Id
                                     join c in _dbContext.Clients on r.ClientId equals c.Id
                                     join wh in _dbContext.WorkingHours on c.Id equals wh.ClientId
-                                    where r.ClientId == clientId && r.ReservationFrom.DayOfYear == date.DayOfYear
+                                    where r.ClientId == User.GetUserId() && r.ReservationFrom.DayOfYear == date.DayOfYear
                                     select new ReservationsForClientResponse
                                     {
                                         Id = r.Id,
