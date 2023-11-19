@@ -46,14 +46,26 @@ public class ReservationsController : ControllerBase
     }
 
     [HttpGet("GetReservationsForClient")]
+    public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(int clientId, DateOnly date)
+    {
+        return GetReservationsForClientInner(clientId, date);
+    }
+
+    [HttpGet("GetReservationsForClientFromClient")]
     public ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClient(DateOnly date)
+    {
+        return GetReservationsForClientInner(User.GetUserId(), date);
+    }
+
+
+    private ActionResult<IEnumerable<ReservationsForClientResponse>> GetReservationsForClientInner(int clientId, DateOnly date)
     {
 
         var reservationsForClient = (from r in _dbContext.Reservations
                                     join u in _dbContext.Users on r.UserId equals u.Id
                                     join c in _dbContext.Clients on r.ClientId equals c.Id
                                     join wh in _dbContext.WorkingHours on c.Id equals wh.ClientId
-                                    where r.ClientId == User.GetUserId() && r.ReservationFrom.DayOfYear == date.DayOfYear
+                                    where r.ClientId == clientId && r.ReservationFrom.DayOfYear == date.DayOfYear
                                     select new ReservationsForClientResponse
                                     {
                                         Id = r.Id,
