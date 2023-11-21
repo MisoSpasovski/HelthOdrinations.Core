@@ -92,6 +92,17 @@ public class ReservationsController : ControllerBase
     [HttpGet("GetWorkingHours")]
     public ActionResult<WorkingHoursResponse> GetWorkingHours(int clientId)
     {
+        return GetWorkingHoursInner(clientId);
+    }
+
+    [HttpGet("GetWorkingHoursFromClient")]
+    public ActionResult<WorkingHoursResponse> GetWorkingHours()
+    {
+        return GetWorkingHoursInner(User.GetUserId());
+    }
+
+    private ActionResult<WorkingHoursResponse> GetWorkingHoursInner(int clientId)
+    {
         var workingHours = _dbContext.WorkingHours.FirstOrDefault(x => x.ClientId == clientId);
         if (workingHours != null) {
             var response = new WorkingHoursResponse
